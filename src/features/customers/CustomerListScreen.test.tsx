@@ -48,9 +48,19 @@ describe('CustomerListScreen', () => {
     const user = userEvent.setup();
     renderScreen();
 
-    await user.click(screen.getByRole('button', { name: 'Ausstehend' }));
+    await user.click(screen.getByRole('button', { name: 'Neu' }));
     const pendingCount = customers.filter((customer) => customer.status === 'pending').length;
     expect(rows()).toHaveLength(pendingCount);
+  });
+
+  it('filters by the new Gefährdet status chip', async () => {
+    const user = userEvent.setup();
+    renderScreen();
+
+    await user.click(screen.getByRole('button', { name: 'Gefährdet' }));
+    const atRiskCount = customers.filter((customer) => customer.status === 'at_risk').length;
+    expect(atRiskCount).toBeGreaterThan(0);
+    expect(rows()).toHaveLength(atRiskCount);
   });
 
   it('shows an explicit empty state and resets search and filter from it', async () => {

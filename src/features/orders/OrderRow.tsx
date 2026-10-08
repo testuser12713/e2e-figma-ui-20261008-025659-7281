@@ -3,15 +3,12 @@ import { formatCurrencyEUR, formatDateDE } from '../../lib/format';
 import styles from './OrderListScreen.module.css';
 
 /**
- * German labels for the order statuses. DESIGN.md names Bezahlt, Offen,
- * Überfällig and Storniert; 'shipped' is added here because the shared
- * OrderStatus model carries it and the list must render one chip/badge per
- * status (AC-04).
+ * German labels for the order statuses. DESIGN.md defines exactly four:
+ * Bezahlt, Offen, Überfällig and Storniert.
  */
 export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
   open: 'Offen',
   paid: 'Bezahlt',
-  shipped: 'Versandt',
   overdue: 'Überfällig',
   cancelled: 'Storniert',
 };
@@ -19,7 +16,6 @@ export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
 const STATUS_TONE: Record<OrderStatus, string> = {
   open: styles.badgeWarning,
   paid: styles.badgeSuccess,
-  shipped: styles.badgeInfo,
   overdue: styles.badgeDanger,
   cancelled: styles.badgeNeutral,
 };

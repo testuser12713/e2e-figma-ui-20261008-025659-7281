@@ -51,9 +51,18 @@ describe('OrderListScreen', () => {
     expect(rows.length).toBeGreaterThanOrEqual(30);
     for (const row of rows) {
       expect(
-        within(row).getByText(/Offen|Bezahlt|Versandt|Überfällig|Storniert/),
+        within(row).getByText(/Offen|Bezahlt|Überfällig|Storniert/),
       ).toBeInTheDocument();
     }
+  });
+
+  it('never shows a Versandt chip or badge', () => {
+    renderScreen();
+
+    expect(screen.queryByText('Versandt')).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /^Versandt/ }),
+    ).not.toBeInTheDocument();
   });
 
   it('filters by status and restores all orders when the filter is cleared', async () => {

@@ -10,6 +10,7 @@ interface CustomerRowProps {
 const statusBadgeClass: Record<CustomerStatus, string> = {
   active: styles.badgeSuccess,
   pending: styles.badgeInfo,
+  at_risk: styles.badgeWarning,
   inactive: styles.badgeNeutral,
 };
 

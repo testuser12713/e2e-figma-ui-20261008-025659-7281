@@ -29,7 +29,7 @@ export const orders: Order[] = [
     "orderNumber": "#1029",
     "customerId": "C-005",
     "date": "2026-12-08",
-    "status": "shipped",
+    "status": "paid",
     "lines": [
       {
         "description": "Cloud Speicher 1 TB",
@@ -88,7 +88,7 @@ export const orders: Order[] = [
     "orderNumber": "#1034",
     "customerId": "C-010",
     "date": "2026-10-23",
-    "status": "shipped",
+    "status": "paid",
     "lines": [
       {
         "description": "Managed Server Stunde",
@@ -247,7 +247,7 @@ export const orders: Order[] = [
     "orderNumber": "#1024",
     "customerId": "C-024",
     "date": "2026-03-24",
-    "status": "shipped",
+    "status": "open",
     "lines": [
       {
         "description": "Managed Server Stunde",
@@ -679,7 +679,7 @@ export const orders: Order[] = [
     "orderNumber": "#1019",
     "customerId": "C-019",
     "date": "2025-05-12",
-    "status": "shipped",
+    "status": "overdue",
     "lines": [
       {
         "description": "Cloud Speicher 1 TB",
@@ -809,7 +809,7 @@ export const orders: Order[] = [
     "orderNumber": "#1004",
     "customerId": "C-004",
     "date": "2025-03-10",
-    "status": "shipped",
+    "status": "open",
     "lines": [
       {
         "description": "Managed Server Stunde",
@@ -863,7 +863,7 @@ export const orders: Order[] = [
     "orderNumber": "#1009",
     "customerId": "C-009",
     "date": "2025-03-08",
-    "status": "shipped",
+    "status": "paid",
     "lines": [
       {
         "description": "Cloud Speicher 1 TB",
@@ -895,7 +895,7 @@ export const orders: Order[] = [
     "orderNumber": "#1014",
     "customerId": "C-014",
     "date": "2025-02-12",
-    "status": "shipped",
+    "status": "cancelled",
     "lines": [
       {
         "description": "Managed Server Stunde",

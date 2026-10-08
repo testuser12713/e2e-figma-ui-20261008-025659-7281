@@ -8,20 +8,21 @@ import styles from './CustomerDetailScreen.module.css';
 
 const customerStatusLabels: Record<CustomerStatus, string> = {
   active: 'Aktiv',
-  pending: 'Ausstehend',
+  pending: 'Neu',
+  at_risk: 'Gefährdet',
   inactive: 'Inaktiv',
 };
 
 const customerStatusClasses: Record<CustomerStatus, string> = {
   active: styles.badgeSuccess,
   pending: styles.badgeInfo,
+  at_risk: styles.badgeWarning,
   inactive: styles.badgeNeutral,
 };
 
 const orderStatusLabels: Record<OrderStatus, string> = {
   open: 'Offen',
   paid: 'Bezahlt',
-  shipped: 'Versandt',
   overdue: 'Überfällig',
   cancelled: 'Storniert',
 };
@@ -29,7 +30,6 @@ const orderStatusLabels: Record<OrderStatus, string> = {
 const orderStatusClasses: Record<OrderStatus, string> = {
   open: styles.badgeWarning,
   paid: styles.badgeSuccess,
-  shipped: styles.badgeInfo,
   overdue: styles.badgeDanger,
   cancelled: styles.badgeNeutral,
 };

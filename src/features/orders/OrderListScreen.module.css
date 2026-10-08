@@ -311,11 +311,6 @@
   color: var(--color-danger);
 }
 
-.badgeInfo {
-  background: var(--color-info_soft);
-  color: var(--color-info);
-}
-
 .badgeNeutral {
   background: var(--color-neutral_soft);
   color: var(--color-neutral_fg);

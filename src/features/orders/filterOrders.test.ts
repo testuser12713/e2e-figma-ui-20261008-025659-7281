@@ -64,13 +64,13 @@ describe('sortOrders', () => {
 
 describe('selectOrders', () => {
   it('filters and sorts together', () => {
-    const result = selectOrders(orders, 'shipped', {
+    const result = selectOrders(orders, 'paid', {
       key: 'amount',
       direction: 'desc',
     });
 
     expect(result.length).toBeGreaterThan(0);
-    expect(result.every((order) => order.status === 'shipped')).toBe(true);
+    expect(result.every((order) => order.status === 'paid')).toBe(true);
     for (let i = 1; i < result.length; i += 1) {
       expect(result[i - 1].total >= result[i].total).toBe(true);
     }
