@@ -9,8 +9,8 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { to: '/', label: 'Dashboard', end: true },
-  { to: '/customers', label: 'Customers' },
-  { to: '/orders', label: 'Orders' },
+  { to: '/customers', label: 'Kunden' },
+  { to: '/orders', label: 'Aufträge' },
 ];
 
 export function Nav() {
