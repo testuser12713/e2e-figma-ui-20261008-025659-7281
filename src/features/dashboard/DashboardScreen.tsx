@@ -5,10 +5,14 @@ import { activity } from '../../data/activity';
 import { formatCurrencyEUR, formatDateDE } from '../../lib/format';
 import {
   averageOrderValue,
+  averageOrderValueDelta,
   countOpenOrders,
   currentMonthRevenue,
   monthlyRevenueSeries,
+  newCustomersDelta,
   newCustomersThisMonth,
+  openOrdersDelta,
+  revenueDelta,
 } from './dashboardMetrics';
 import styles from './DashboardScreen.module.css';
 
@@ -37,21 +41,25 @@ export default function DashboardScreen() {
           region="kpi-revenue"
           label="Umsatz (Monat)"
           value={formatCurrencyEUR(monthRevenue)}
+          delta={revenueDelta()}
         />
         <KpiCard
           region="kpi-open-orders"
           label="Offene Aufträge"
           value={String(openOrders)}
+          delta={openOrdersDelta()}
         />
         <KpiCard
           region="kpi-new-customers"
           label="Neue Kunden"
           value={String(newCustomers)}
+          delta={newCustomersDelta()}
         />
         <KpiCard
           region="kpi-avg-order"
           label="Ø Auftragswert"
           value={formatCurrencyEUR(averageOrder)}
+          delta={averageOrderValueDelta()}
         />
       </section>
 

@@ -111,3 +111,97 @@ export function averageOrderValue(orderList: Order[] = orders): number {
   const total = orderList.reduce((sum, order) => sum + order.total, 0);
   return round2(total / orderList.length);
 }
+
+export type DeltaDirection = 'up' | 'down' | 'flat';
+
+export interface KpiDelta {
+  direction: DeltaDirection;
+  percent: number;
+  text: string;
+  note?: string;
+}
+
+export function formatPercentDE(percent: number): string {
+  const rounded = Math.round(percent * 10) / 10;
+  const sign = rounded < 0 ? '-' : '+';
+  const absolute = Math.abs(rounded).toFixed(1).replace('.', ',');
+  return `${sign}${absolute}\u00A0%`;
+}
+
+function buildDelta(current: number, previous: number): KpiDelta {
+  if (previous === 0) {
+    return { direction: 'flat', percent: 0, text: formatPercentDE(0) };
+  }
+  const percent = round2(((current - previous) / Math.abs(previous)) * 100);
+  const direction: DeltaDirection = percent > 0 ? 'up' : percent < 0 ? 'down' : 'flat';
+  return { direction, percent, text: formatPercentDE(percent) };
+}
+
+/*
+ * Compares a month against the previous month. The mock data is sparse, so the
+ * month directly before the reference month is sometimes empty; in that case we
+ * walk back to the most recent month that holds a value for the metric. Clamping
+ * to at most twelve months keeps this a "previous month" comparison and never an
+ * unbounded search.
+ */
+function previousMonthValue(
+  month: string,
+  valueAt: (month: string) => number,
+  maxLookback = 12,
+): number {
+  for (let offset = 1; offset <= maxLookback; offset += 1) {
+    const value = valueAt(addMonths(month, -offset));
+    if (value > 0) {
+      return value;
+    }
+  }
+  return 0;
+}
+
+export function revenueDelta(
+  orderList: Order[] = orders,
+  month: string = REFERENCE_MONTH,
+): KpiDelta {
+  const current = currentMonthRevenue(orderList, month);
+  const previous = previousMonthValue(month, (key) => currentMonthRevenue(orderList, key));
+  return buildDelta(current, previous);
+}
+
+export function countOpenOrdersInMonth(orderList: Order[], month: string): number {
+  return countOpenOrders(orderList.filter((order) => monthKey(order.date) === month));
+}
+
+export function openOrdersDelta(
+  orderList: Order[] = orders,
+  month: string = REFERENCE_MONTH,
+): KpiDelta {
+  const current = countOpenOrdersInMonth(orderList, month);
+  const previous = previousMonthValue(month, (key) => countOpenOrdersInMonth(orderList, key));
+  return buildDelta(current, previous);
+}
+
+export function newCustomersDelta(
+  activityEntries: ActivityEntry[] = activity,
+  month: string = REFERENCE_MONTH,
+): KpiDelta {
+  const current = newCustomersThisMonth(activityEntries, month);
+  const previous = previousMonthValue(month, (key) =>
+    newCustomersThisMonth(activityEntries, key),
+  );
+  return buildDelta(current, previous);
+}
+
+export function monthlyAverageOrderValue(orderList: Order[], month: string): number {
+  return averageOrderValue(orderList.filter((order) => monthKey(order.date) === month));
+}
+
+export function averageOrderValueDelta(
+  orderList: Order[] = orders,
+  month: string = REFERENCE_MONTH,
+): KpiDelta {
+  const current = monthlyAverageOrderValue(orderList, month);
+  const previous = previousMonthValue(month, (key) =>
+    monthlyAverageOrderValue(orderList, key),
+  );
+  return buildDelta(current, previous);
+}

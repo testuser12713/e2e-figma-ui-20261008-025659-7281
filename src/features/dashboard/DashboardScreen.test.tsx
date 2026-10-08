@@ -52,6 +52,17 @@ describe('DashboardScreen', () => {
     );
   });
 
+  it('renders a trend arrow and a percent delta on every KPI card', () => {
+    render(<DashboardScreen />);
+
+    for (const id of ['kpi-revenue', 'kpi-open-orders', 'kpi-new-customers', 'kpi-avg-order']) {
+      const card = document.getElementById(id) as HTMLElement;
+      expect(card).not.toBeNull();
+      expect(card.textContent).toMatch(/[↑↓→]/);
+      expect(card.textContent).toMatch(/\d+,\d\s*%/);
+    }
+  });
+
   it('renders the revenue chart card with an accessible chart and hidden data table', () => {
     render(<DashboardScreen />);
 
