@@ -1,0 +1,319 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  align-self: flex-start;
+  min-height: 40px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--color-fg_muted);
+  font-size: var(--size-base);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: background-color 120ms ease-out, color 120ms ease-out;
+}
+
+.backLink:hover {
+  background: var(--color-surface_alt);
+  color: var(--color-fg);
+}
+
+.backArrow {
+  font-size: var(--size-lg);
+  line-height: 1;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0);
+}
+
+.title {
+  font-size: var(--size-2xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-fg);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--size-base);
+  color: var(--color-fg_muted);
+}
+
+.card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-4);
+  margin: 0;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0);
+  min-width: 0;
+}
+
+.metaLabel {
+  font-size: var(--size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--color-fg_subtle);
+}
+
+.metaValue {
+  margin: 0;
+  font-size: var(--size-base);
+  color: var(--color-fg);
+  overflow-wrap: anywhere;
+}
+
+.mono {
+  font-family: var(--font-family-mono);
+  font-size: var(--size-sm);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sectionTitle {
+  font-size: var(--size-lg);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-fg);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.kpiCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.kpiLabel {
+  font-size: var(--size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--color-fg_muted);
+}
+
+.kpiValue {
+  font-size: var(--size-2xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.emptyHistory {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-fg_muted);
+}
+
+.table {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.tableHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: var(--space-3);
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--color-border_strong);
+  font-size: var(--size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--color-fg_muted);
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-fg);
+  font-size: var(--size-base);
+  text-decoration: none;
+  transition: background-color 120ms ease-out;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableRow:hover {
+  background: var(--color-surface);
+}
+
+.orderNumber {
+  font-family: var(--font-family-mono);
+  font-size: var(--size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.cellNum {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.chevron {
+  color: var(--color-fg_subtle);
+  font-size: var(--size-lg);
+  line-height: 1;
+  text-align: right;
+}
+
+.badgeSuccess,
+.badgeInfo,
+.badgeWarning,
+.badgeDanger,
+.badgeNeutral {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-pill);
+  font-size: var(--size-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.badgeSuccess {
+  background: var(--color-success_soft);
+  color: var(--color-success);
+}
+
+.badgeInfo {
+  background: var(--color-info_soft);
+  color: var(--color-info);
+}
+
+.badgeWarning {
+  background: var(--color-warning_soft);
+  color: var(--color-warning);
+}
+
+.badgeDanger {
+  background: var(--color-danger_soft);
+  color: var(--color-danger);
+}
+
+.badgeNeutral {
+  background: var(--color-neutral_soft);
+  color: var(--color-neutral_fg);
+}
+
+@media (max-width: 1023px) {
+  .kpiGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .tableHead {
+    display: none;
+  }
+
+  .table {
+    border: none;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .tableBody {
+    gap: var(--space-3);
+  }
+
+  .tableRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+    min-height: 0;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+  }
+
+  .tableRow:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tableRow > span[data-label] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .tableRow > span[data-label]::before {
+    content: attr(data-label);
+    font-size: var(--size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+    color: var(--color-fg_subtle);
+  }
+
+  .cellNum {
+    text-align: right;
+  }
+
+  .chevron {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .metaGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kpiGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
