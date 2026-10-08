@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufträge — BusinessHandler</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="app-nav" data-od-id="main-nav">
+    <div class="wordmark" data-od-id="wordmark">BusinessHandler</div>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-item" data-od-id="nav-dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="customers.html" class="nav-item" data-od-id="nav-customers">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Kunden</span>
+      </a>
+      <a href="orders.html" class="nav-item active" aria-current="page" data-od-id="nav-orders">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span>Aufträge</span>
+      </a>
+    </nav>
+    <div class="sidebar-foot">MVP v1.0 · ohne Backend</div>
+  </aside>
+
+  <main class="main" data-od-id="main">
+    <div class="page">
+      <header class="page-header" data-od-id="page-header">
+        <div>
+          <h1 data-od-id="page-title">Aufträge</h1>
+          <p class="subtitle">32 Aufträge insgesamt.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" id="export-btn" data-od-id="btn-export">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export
+          </button>
+        </div>
+      </header>
+
+      <div class="toolbar" data-od-id="toolbar">
+        <div class="field">
+          <label class="field-label" for="search">Aufträge durchsuchen</label>
+          <div class="search">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input id="search" type="search" placeholder="Auftragsnummer oder Kunde…" autocomplete="off" />
+            <button class="search-clear" id="search-clear" hidden aria-label="Suche löschen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="chips" id="status-chips" role="group" aria-label="Nach Status filtern">
+          <button class="chip" aria-pressed="true" data-status="alle" data-od-id="chip-alle">Alle <span class="chip-count">32</span></button>
+          <button class="chip" aria-pressed="false" data-status="bezahlt">Bezahlt <span class="chip-count">19</span></button>
+          <button class="chip" aria-pressed="false" data-status="offen">Offen <span class="chip-count">5</span></button>
+          <button class="chip" aria-pressed="false" data-status="ueberfaellig">Überfällig <span class="chip-count">5</span></button>
+          <button class="chip" aria-pressed="false" data-status="storniert">Storniert <span class="chip-count">3</span></button>
+        </div>
+      </div>
+
+      <div class="list" id="order-list" data-od-id="order-list">
+        <div class="table-head cols-orders">
+          <div>Auftrag</div><div>Kunde</div><div>Datum</div>
+          <div class="cell-num">Betrag</div><div>Status</div><div></div>
+        </div>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1073 anna bergmann" data-od-id="order-row-1073">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1073</div>
+          <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+          <div class="cell" data-label="Datum">30.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.340,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="offen" data-search="#1072 paul neumann" data-od-id="order-row-1072">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1072</div>
+          <div class="cell row-name" data-label="Kunde">Paul Neumann</div>
+          <div class="cell" data-label="Datum">29.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">8.940,50&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Offen</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1071 sophie hoffmann" data-od-id="order-row-1071">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1071</div>
+          <div class="cell row-name" data-label="Kunde">Sophie Hoffmann</div>
+          <div class="cell" data-label="Datum">29.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.120,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="ueberfaellig" data-search="#1070 lukas schmidt" data-od-id="order-row-1070">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1070</div>
+          <div class="cell row-name" data-label="Kunde">Lukas Schmidt</div>
+          <div class="cell" data-label="Datum">28.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">4.620,75&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-danger">Überfällig</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1069 julia stein" data-od-id="order-row-1069">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1069</div>
+          <div class="cell row-name" data-label="Kunde">Julia Stein</div>
+          <div class="cell" data-label="Datum">28.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.180,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="ueberfaellig" data-search="#1068 emma fischer" data-od-id="order-row-1068">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1068</div>
+          <div class="cell row-name" data-label="Kunde">Emma Fischer</div>
+          <div class="cell" data-label="Datum">27.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">3.460,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-danger">Überfällig</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1067 leon hoffmann" data-od-id="order-row-1067">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1067</div>
+          <div class="cell row-name" data-label="Kunde">Leon Hoffmann</div>
+          <div class="cell" data-label="Datum">27.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.890,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1066 hannah koch" data-od-id="order-row-1066">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1066</div>
+          <div class="cell row-name" data-label="Kunde">Hannah Koch</div>
+          <div class="cell" data-label="Datum">26.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">980,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="offen" data-search="#1065 jakob braun" data-od-id="order-row-1065">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1065</div>
+          <div class="cell row-name" data-label="Kunde">Jakob Braun</div>
+          <div class="cell" data-label="Datum">26.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">5.270,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Offen</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="storniert" data-search="#1064 lena krüger" data-od-id="order-row-1064">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1064</div>
+          <div class="cell row-name" data-label="Kunde">Lena Krüger</div>
+          <div class="cell" data-label="Datum">25.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.640,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-neutral">Storniert</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1063 emilia lang" data-od-id="order-row-1063">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1063</div>
+          <div class="cell row-name" data-label="Kunde">Emilia Lang</div>
+          <div class="cell" data-label="Datum">25.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.540,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1062 felix richter" data-od-id="order-row-1062">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1062</div>
+          <div class="cell row-name" data-label="Kunde">Felix Richter</div>
+          <div class="cell" data-label="Datum">24.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">3.890,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="offen" data-search="#1061 laura frank" data-od-id="order-row-1061">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1061</div>
+          <div class="cell row-name" data-label="Kunde">Laura Frank</div>
+          <div class="cell" data-label="Datum">23.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.760,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Offen</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1060 jonas wagner" data-od-id="order-row-1060">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1060</div>
+          <div class="cell row-name" data-label="Kunde">Jonas Wagner</div>
+          <div class="cell" data-label="Datum">22.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">4.120,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1059 david wolf" data-od-id="order-row-1059">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1059</div>
+          <div class="cell row-name" data-label="Kunde">David Wolf</div>
+          <div class="cell" data-label="Datum">21.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.950,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="ueberfaellig" data-search="#1058 noah peters" data-od-id="order-row-1058">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1058</div>
+          <div class="cell row-name" data-label="Kunde">Noah Peters</div>
+          <div class="cell" data-label="Datum">20.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.430,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-danger">Überfällig</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="storniert" data-search="#1057 marie schwarz" data-od-id="order-row-1057">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1057</div>
+          <div class="cell row-name" data-label="Kunde">Marie Schwarz</div>
+          <div class="cell" data-label="Datum">19.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">890,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-neutral">Storniert</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1056 jakob braun" data-od-id="order-row-1056">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1056</div>
+          <div class="cell row-name" data-label="Kunde">Jakob Braun</div>
+          <div class="cell" data-label="Datum">18.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">6.380,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1055 emma fischer" data-od-id="order-row-1055">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1055</div>
+          <div class="cell row-name" data-label="Kunde">Emma Fischer</div>
+          <div class="cell" data-label="Datum">17.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.210,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1054 anna bergmann" data-od-id="order-row-1054">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1054</div>
+          <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+          <div class="cell" data-label="Datum">16.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">3.720,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1053 paul neumann" data-od-id="order-row-1053">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1053</div>
+          <div class="cell row-name" data-label="Kunde">Paul Neumann</div>
+          <div class="cell" data-label="Datum">15.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">7.850,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="offen" data-search="#1052 lukas schmidt" data-od-id="order-row-1052">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1052</div>
+          <div class="cell row-name" data-label="Kunde">Lukas Schmidt</div>
+          <div class="cell" data-label="Datum">14.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">5.940,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Offen</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1051 ben vogel" data-od-id="order-row-1051">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1051</div>
+          <div class="cell row-name" data-label="Kunde">Ben Vogel</div>
+          <div class="cell" data-label="Datum">13.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.260,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1050 clara zimmermann" data-od-id="order-row-1050">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1050</div>
+          <div class="cell row-name" data-label="Kunde">Clara Zimmermann</div>
+          <div class="cell" data-label="Datum">12.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.870,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="offen" data-search="#1049 tim bauer" data-od-id="order-row-1049">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1049</div>
+          <div class="cell row-name" data-label="Kunde">Tim Bauer</div>
+          <div class="cell" data-label="Datum">11.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.340,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Offen</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1048 maximilian weber" data-od-id="order-row-1048">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1048</div>
+          <div class="cell row-name" data-label="Kunde">Maximilian Weber</div>
+          <div class="cell" data-label="Datum">10.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">4.580,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="ueberfaellig" data-search="#1047 lena krüger" data-od-id="order-row-1047">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1047</div>
+          <div class="cell row-name" data-label="Kunde">Lena Krüger</div>
+          <div class="cell" data-label="Datum">09.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">3.190,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-danger">Überfällig</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1046 jonas wagner" data-od-id="order-row-1046">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1046</div>
+          <div class="cell row-name" data-label="Kunde">Jonas Wagner</div>
+          <div class="cell" data-label="Datum">08.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.740,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="storniert" data-search="#1045 emma fischer" data-od-id="order-row-1045">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1045</div>
+          <div class="cell row-name" data-label="Kunde">Emma Fischer</div>
+          <div class="cell" data-label="Datum">07.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">5.610,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-neutral">Storniert</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1044 julia stein" data-od-id="order-row-1044">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1044</div>
+          <div class="cell row-name" data-label="Kunde">Julia Stein</div>
+          <div class="cell" data-label="Datum">06.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">1.980,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="ueberfaellig" data-search="#1043 anna bergmann" data-od-id="order-row-1043">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1043</div>
+          <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+          <div class="cell" data-label="Datum">05.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">3.360,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-danger">Überfällig</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="order-detail.html" class="list-row cols-orders" data-status="bezahlt" data-search="#1042 anna bergmann" data-od-id="order-row-1042">
+          <div class="cell cell-mono cell-strong" data-label="Auftrag">#1042</div>
+          <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+          <div class="cell" data-label="Datum">04.09.2026</div>
+          <div class="cell cell-num" data-label="Betrag">2.380,00&nbsp;EUR</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+      </div>
+
+      <div class="empty" id="empty-state" hidden data-od-id="empty-state">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <h2 id="empty-heading">Keine Aufträge gefunden</h2>
+        <p id="empty-message"></p>
+        <button class="btn btn-primary" id="reset-btn">Filter zurücksetzen</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="overlay" id="dialog" hidden data-od-id="coming-soon-dialog">
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <h2 id="dialog-title">In Entwicklung</h2>
+      <p class="dialog-body">Der CSV-Export ist im Prototyp noch nicht verfügbar.</p>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" data-close>Abbrechen</button>
+        <button class="btn btn-primary" data-close autofocus>Verstanden</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.nav');
+      var navItems = Array.prototype.slice.call(nav.querySelectorAll('.nav-item'));
+      navItems.forEach(function (el, i) { el.tabIndex = i === 0 ? 0 : -1; });
+      nav.addEventListener('keydown', function (e) {
+        var idx = navItems.indexOf(document.activeElement);
+        if (idx === -1) return;
+        var next = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = navItems[(idx + 1) % navItems.length];
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = navItems[(idx - 1 + navItems.length) % navItems.length];
+        else return;
+        e.preventDefault();
+        navItems.forEach(function (el) { el.tabIndex = -1; });
+        next.tabIndex = 0; next.focus();
+      });
+
+      var rows = Array.prototype.slice.call(document.querySelectorAll('#order-list .list-row'));
+      var search = document.getElementById('search');
+      var clearBtn = document.getElementById('search-clear');
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+      var empty = document.getElementById('empty-state');
+      var list = document.getElementById('order-list');
+      var emptyMessage = document.getElementById('empty-message');
+      var emptyHeading = document.getElementById('empty-heading');
+      var status = 'alle';
+      var statusLabel = { bezahlt: 'Bezahlt', offen: 'Offen', ueberfaellig: 'Überfällig', storniert: 'Storniert' };
+
+      function apply() {
+        var q = search.value.trim().toLowerCase();
+        var visible = rows.filter(function (r) {
+          var mq = !q || r.getAttribute('data-search').indexOf(q) !== -1;
+          var ms = status === 'alle' || r.getAttribute('data-status') === status;
+          return mq && ms;
+        });
+        rows.forEach(function (r) { r.hidden = visible.indexOf(r) === -1; });
+        var none = visible.length === 0;
+        empty.hidden = !none;
+        list.hidden = none;
+        if (none) {
+          var parts = [];
+          if (q) parts.push('„' + search.value.trim() + '“');
+          if (status !== 'alle') parts.push('Status ' + statusLabel[status]);
+          emptyHeading.textContent = 'Keine Aufträge gefunden';
+          emptyMessage.textContent = 'Keine Aufträge für ' + parts.join(' mit ') + '.';
+        }
+        clearBtn.hidden = q.length === 0;
+      }
+
+      search.addEventListener('input', apply);
+      clearBtn.addEventListener('click', function () { search.value = ''; apply(); search.focus(); });
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          status = chip.getAttribute('data-status');
+          chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+          apply();
+        });
+        chip.addEventListener('keydown', function (e) {
+          var idx = chips.indexOf(chip);
+          var next = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') next = chips[(idx + (e.key === 'ArrowRight' ? 1 : -1) + chips.length) % chips.length];
+          else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') next = chips[(idx + (e.key === 'ArrowDown' ? 1 : -1) + chips.length) % chips.length];
+          else return;
+          e.preventDefault();
+          next.focus();
+        });
+      });
+
+      document.getElementById('reset-btn').addEventListener('click', function () {
+        search.value = '';
+        status = 'alle';
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-status') === 'alle' ? 'true' : 'false'); });
+        apply();
+        search.focus();
+      });
+
+      var overlay = document.getElementById('dialog');
+      var trigger = document.getElementById('export-btn');
+      var lastFocus = null;
+      function openDialog() {
+        lastFocus = document.activeElement;
+        overlay.hidden = false;
+        var focusable = overlay.querySelectorAll('button');
+        if (focusable.length) focusable[focusable.length - 1].focus();
+      }
+      function closeDialog() {
+        overlay.hidden = true;
+        if (lastFocus) lastFocus.focus();
+      }
+      trigger.addEventListener('click', openDialog);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeDialog();
+        if (e.target.hasAttribute && e.target.hasAttribute('data-close')) closeDialog();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (overlay.hidden) return;
+        if (e.key === 'Escape') { closeDialog(); return; }
+        if (e.key === 'Tab') {
+          var focusable = Array.prototype.slice.call(overlay.querySelectorAll('button'));
+          var first = focusable[0], last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

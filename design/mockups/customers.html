@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kunden — BusinessHandler</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="app-nav" data-od-id="main-nav">
+    <div class="wordmark" data-od-id="wordmark">BusinessHandler</div>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-item" data-od-id="nav-dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="customers.html" class="nav-item active" aria-current="page" data-od-id="nav-customers">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Kunden</span>
+      </a>
+      <a href="orders.html" class="nav-item" data-od-id="nav-orders">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span>Aufträge</span>
+      </a>
+    </nav>
+    <div class="sidebar-foot">MVP v1.0 · ohne Backend</div>
+  </aside>
+
+  <main class="main" data-od-id="main">
+    <div class="page">
+      <header class="page-header" data-od-id="page-header">
+        <div>
+          <h1 data-od-id="page-title">Kunden</h1>
+          <p class="subtitle">22 Kunden insgesamt.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="new-customer-btn" data-od-id="btn-new-customer">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Neuer Kunde
+          </button>
+        </div>
+      </header>
+
+      <div class="toolbar" data-od-id="toolbar">
+        <div class="field">
+          <label class="field-label" for="search">Kunden durchsuchen</label>
+          <div class="search">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input id="search" type="search" placeholder="Name, Unternehmen oder E-Mail…" autocomplete="off" />
+            <button class="search-clear" id="search-clear" hidden aria-label="Suche löschen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="chips" id="status-chips" role="group" aria-label="Nach Status filtern">
+          <button class="chip" aria-pressed="true" data-status="alle" data-od-id="chip-alle">Alle</button>
+          <button class="chip" aria-pressed="false" data-status="aktiv">Aktiv</button>
+          <button class="chip" aria-pressed="false" data-status="neu">Neu</button>
+          <button class="chip" aria-pressed="false" data-status="gefaehrdet">Gefährdet</button>
+          <button class="chip" aria-pressed="false" data-status="inaktiv">Inaktiv</button>
+        </div>
+      </div>
+
+      <div class="list" id="customer-list" data-od-id="customer-list">
+        <div class="table-head cols-customers">
+          <div>Kunde</div><div>Unternehmen</div><div>Status</div>
+          <div class="cell-num">Umsatz</div><div>Letzter Auftrag</div><div></div>
+        </div>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="anna bergmann bergmann gmbh anna.bergmann@bergmann-gmbh.de" data-od-id="customer-row-bergmann">
+          <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+          <div class="cell row-sub" data-label="Unternehmen">Bergmann GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">48.320,50&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">12.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="maximilian weber weber & söhne kg m.weber@weber-soehne.de" data-od-id="customer-row-weber">
+          <div class="cell row-name" data-label="Kunde">Maximilian Weber</div>
+          <div class="cell row-sub" data-label="Unternehmen">Weber &amp; Söhne KG</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">91.204,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">05.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="neu" data-search="sophie hoffmann hoffmann logistik gmbh s.hoffmann@hoffmann-logistik.de" data-od-id="customer-row-hoffmann-s">
+          <div class="cell row-name" data-label="Kunde">Sophie Hoffmann</div>
+          <div class="cell row-sub" data-label="Unternehmen">Hoffmann Logistik GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-info">Neu</span></div>
+          <div class="cell cell-num" data-label="Umsatz">6.480,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">28.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="lukas schmidt schmidt baustoffe gmbh l.schmidt@schmidt-baustoffe.de" data-od-id="customer-row-schmidt">
+          <div class="cell row-name" data-label="Kunde">Lukas Schmidt</div>
+          <div class="cell row-sub" data-label="Unternehmen">Schmidt Baustoffe GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">112.780,25&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">30.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="gefaehrdet" data-search="emma fischer fischer immobilien gmbh e.fischer@fischer-immobilien.de" data-od-id="customer-row-fischer">
+          <div class="cell row-name" data-label="Kunde">Emma Fischer</div>
+          <div class="cell row-sub" data-label="Unternehmen">Fischer Immobilien GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Gefährdet</span></div>
+          <div class="cell cell-num" data-label="Umsatz">23.150,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">15.06.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="jonas wagner wagner metallbau gmbh j.wagner@wagner-metallbau.de" data-od-id="customer-row-wagner">
+          <div class="cell row-name" data-label="Kunde">Jonas Wagner</div>
+          <div class="cell row-sub" data-label="Unternehmen">Wagner Metallbau GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">66.430,75&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">22.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="inaktiv" data-search="mia becker becker consulting gmbh mia.becker@becker-consulting.de" data-od-id="customer-row-becker">
+          <div class="cell row-name" data-label="Kunde">Mia Becker</div>
+          <div class="cell row-sub" data-label="Unternehmen">Becker Consulting GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-neutral">Inaktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">9.840,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">02.03.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="leon hoffmann hoffmann elektro gmbh leon.hoffmann@hoffmann-elektro.de" data-od-id="customer-row-hoffmann-l">
+          <div class="cell row-name" data-label="Kunde">Leon Hoffmann</div>
+          <div class="cell row-sub" data-label="Unternehmen">Hoffmann Elektro GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">54.210,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">27.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="neu" data-search="hannah koch koch gartenbau gmbh h.koch@koch-gartenbau.de" data-od-id="customer-row-koch">
+          <div class="cell row-name" data-label="Kunde">Hannah Koch</div>
+          <div class="cell row-sub" data-label="Unternehmen">Koch Gartenbau GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-info">Neu</span></div>
+          <div class="cell cell-num" data-label="Umsatz">3.920,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">26.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="felix richter richter & partner gmbh f.richter@richter-partner.de" data-od-id="customer-row-richter">
+          <div class="cell row-name" data-label="Kunde">Felix Richter</div>
+          <div class="cell row-sub" data-label="Unternehmen">Richter &amp; Partner GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">78.905,30&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">24.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="gefaehrdet" data-search="lena krüger krüger medien gmbh l.krueger@krueger-medien.de" data-od-id="customer-row-krueger">
+          <div class="cell row-name" data-label="Kunde">Lena Krüger</div>
+          <div class="cell row-sub" data-label="Unternehmen">Krüger Medien GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Gefährdet</span></div>
+          <div class="cell cell-num" data-label="Umsatz">18.640,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">11.07.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="paul neumann neumann software gmbh p.neumann@neumann-software.de" data-od-id="customer-row-neumann">
+          <div class="cell row-name" data-label="Kunde">Paul Neumann</div>
+          <div class="cell row-sub" data-label="Unternehmen">Neumann Software GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">143.220,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">29.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="inaktiv" data-search="marie schwarz schwarz textil gmbh m.schwarz@schwarz-textil.de" data-od-id="customer-row-schwarz">
+          <div class="cell row-name" data-label="Kunde">Marie Schwarz</div>
+          <div class="cell row-sub" data-label="Unternehmen">Schwarz Textil GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-neutral">Inaktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">12.300,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">20.01.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="jakob braun braun maschinenbau gmbh j.braun@braun-maschinenbau.de" data-od-id="customer-row-braun">
+          <div class="cell row-name" data-label="Kunde">Jakob Braun</div>
+          <div class="cell row-sub" data-label="Unternehmen">Braun Maschinenbau GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">87.500,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">18.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="neu" data-search="clara zimmermann zimmermann architekten c.zimmermann@zimmermann-architekten.de" data-od-id="customer-row-zimmermann">
+          <div class="cell row-name" data-label="Kunde">Clara Zimmermann</div>
+          <div class="cell row-sub" data-label="Unternehmen">Zimmermann Architekten</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-info">Neu</span></div>
+          <div class="cell cell-num" data-label="Umsatz">5.740,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">30.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="david wolf wolf transporte gmbh d.wolf@wolf-transporte.de" data-od-id="customer-row-wolf">
+          <div class="cell row-name" data-label="Kunde">David Wolf</div>
+          <div class="cell row-sub" data-label="Unternehmen">Wolf Transporte GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">69.120,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">21.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="emilia lang lang delikatessen gmbh e.lang@lang-delikatessen.de" data-od-id="customer-row-lang">
+          <div class="cell row-name" data-label="Kunde">Emilia Lang</div>
+          <div class="cell row-sub" data-label="Unternehmen">Lang Delikatessen GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">41.980,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">25.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="gefaehrdet" data-search="noah peters peters sanitär gmbh n.peters@peters-sanitaer.de" data-od-id="customer-row-peters">
+          <div class="cell row-name" data-label="Kunde">Noah Peters</div>
+          <div class="cell row-sub" data-label="Unternehmen">Peters Sanitär GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-warning">Gefährdet</span></div>
+          <div class="cell cell-num" data-label="Umsatz">15.260,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">09.05.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="laura frank frank event gmbh l.frank@frank-event.de" data-od-id="customer-row-frank">
+          <div class="cell row-name" data-label="Kunde">Laura Frank</div>
+          <div class="cell row-sub" data-label="Unternehmen">Frank Event GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">33.650,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">23.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="inaktiv" data-search="ben vogel vogel druck gmbh b.vogel@vogel-druck.de" data-od-id="customer-row-vogel">
+          <div class="cell row-name" data-label="Kunde">Ben Vogel</div>
+          <div class="cell row-sub" data-label="Unternehmen">Vogel Druck GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-neutral">Inaktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">8.190,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">14.02.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="aktiv" data-search="julia stein stein möbel gmbh j.stein@stein-moebel.de" data-od-id="customer-row-stein">
+          <div class="cell row-name" data-label="Kunde">Julia Stein</div>
+          <div class="cell row-sub" data-label="Unternehmen">Stein Möbel GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Aktiv</span></div>
+          <div class="cell cell-num" data-label="Umsatz">58.720,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">28.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+        <a href="customer-detail.html" class="list-row cols-customers" data-status="neu" data-search="tim bauer bauer fensterbau gmbh t.bauer@bauer-fensterbau.de" data-od-id="customer-row-bauer">
+          <div class="cell row-name" data-label="Kunde">Tim Bauer</div>
+          <div class="cell row-sub" data-label="Unternehmen">Bauer Fensterbau GmbH</div>
+          <div class="cell cell--status" data-label="Status"><span class="badge badge-info">Neu</span></div>
+          <div class="cell cell-num" data-label="Umsatz">4.610,00&nbsp;EUR</div>
+          <div class="cell" data-label="Letzter Auftrag">29.09.2026</div>
+          <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+        </a>
+      </div>
+
+      <div class="empty" id="empty-state" hidden data-od-id="empty-state">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <h2 id="empty-heading">Keine Kunden gefunden</h2>
+        <p id="empty-message"></p>
+        <button class="btn btn-primary" id="reset-btn">Filter zurücksetzen</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="overlay" id="dialog" hidden data-od-id="coming-soon-dialog">
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <h2 id="dialog-title">In Entwicklung</h2>
+      <p class="dialog-body">Das Anlegen neuer Kunden ist im Prototyp noch nicht verfügbar.</p>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" data-close>Abbrechen</button>
+        <button class="btn btn-primary" data-close autofocus>Verstanden</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Main nav roving tabindex
+      var nav = document.querySelector('.nav');
+      var navItems = Array.prototype.slice.call(nav.querySelectorAll('.nav-item'));
+      navItems.forEach(function (el, i) { el.tabIndex = i === 0 ? 0 : -1; });
+      nav.addEventListener('keydown', function (e) {
+        var idx = navItems.indexOf(document.activeElement);
+        if (idx === -1) return;
+        var next = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = navItems[(idx + 1) % navItems.length];
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = navItems[(idx - 1 + navItems.length) % navItems.length];
+        else return;
+        e.preventDefault();
+        navItems.forEach(function (el) { el.tabIndex = -1; });
+        next.tabIndex = 0; next.focus();
+      });
+
+      // Filtering
+      var rows = Array.prototype.slice.call(document.querySelectorAll('#customer-list .list-row'));
+      var search = document.getElementById('search');
+      var clearBtn = document.getElementById('search-clear');
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+      var empty = document.getElementById('empty-state');
+      var list = document.getElementById('customer-list');
+      var emptyMessage = document.getElementById('empty-message');
+      var emptyHeading = document.getElementById('empty-heading');
+      var status = 'alle';
+      var statusLabel = { aktiv: 'Aktiv', neu: 'Neu', gefaehrdet: 'Gefährdet', inaktiv: 'Inaktiv' };
+
+      function apply() {
+        var q = search.value.trim().toLowerCase();
+        var visible = rows.filter(function (r) {
+          var mq = !q || r.getAttribute('data-search').indexOf(q) !== -1;
+          var ms = status === 'alle' || r.getAttribute('data-status') === status;
+          return mq && ms;
+        });
+        rows.forEach(function (r) { r.hidden = visible.indexOf(r) === -1; });
+        var none = visible.length === 0;
+        empty.hidden = !none;
+        list.hidden = none;
+        if (none) {
+          var parts = [];
+          if (q) parts.push('„' + search.value.trim() + '“');
+          if (status !== 'alle') parts.push('Status ' + statusLabel[status]);
+          emptyHeading.textContent = 'Keine Kunden gefunden';
+          emptyMessage.textContent = 'Keine Kunden für ' + parts.join(' mit ') + '.';
+        }
+        clearBtn.hidden = q.length === 0;
+      }
+
+      search.addEventListener('input', apply);
+
+      clearBtn.addEventListener('click', function () {
+        search.value = '';
+        apply();
+        search.focus();
+      });
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          status = chip.getAttribute('data-status');
+          chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+          apply();
+        });
+        chip.addEventListener('keydown', function (e) {
+          var idx = chips.indexOf(chip);
+          var next = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            var dir = e.key === 'ArrowRight' ? 1 : -1;
+            next = chips[(idx + dir + chips.length) % chips.length];
+          } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            var d = e.key === 'ArrowDown' ? 1 : -1;
+            next = chips[(idx + d + chips.length) % chips.length];
+          } else {
+            return;
+          }
+          e.preventDefault();
+          next.focus();
+        });
+      });
+
+      document.getElementById('reset-btn').addEventListener('click', function () {
+        search.value = '';
+        status = 'alle';
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-status') === 'alle' ? 'true' : 'false'); });
+        apply();
+        search.focus();
+      });
+
+      // Dialog (Coming soon)
+      var overlay = document.getElementById('dialog');
+      var trigger = document.getElementById('new-customer-btn');
+      var lastFocus = null;
+      function openDialog() {
+        lastFocus = document.activeElement;
+        overlay.hidden = false;
+        var focusable = overlay.querySelectorAll('button');
+        if (focusable.length) focusable[focusable.length - 1].focus();
+      }
+      function closeDialog() {
+        overlay.hidden = true;
+        if (lastFocus) lastFocus.focus();
+      }
+      trigger.addEventListener('click', openDialog);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeDialog();
+        if (e.target.hasAttribute && e.target.hasAttribute('data-close')) closeDialog();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (overlay.hidden) return;
+        if (e.key === 'Escape') { closeDialog(); return; }
+        if (e.key === 'Tab') {
+          var focusable = Array.prototype.slice.call(overlay.querySelectorAll('button'));
+          var first = focusable[0], last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

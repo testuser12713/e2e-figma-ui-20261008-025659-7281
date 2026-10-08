@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kundendetail — BusinessHandler</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="app-nav" data-od-id="main-nav">
+    <div class="wordmark" data-od-id="wordmark">BusinessHandler</div>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-item" data-od-id="nav-dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="customers.html" class="nav-item active" aria-current="page" data-od-id="nav-customers">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Kunden</span>
+      </a>
+      <a href="orders.html" class="nav-item" data-od-id="nav-orders">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span>Aufträge</span>
+      </a>
+    </nav>
+    <div class="sidebar-foot">MVP v1.0 · ohne Backend</div>
+  </aside>
+
+  <main class="main" data-od-id="main">
+    <div class="page">
+      <a href="customers.html" class="back-link" data-od-id="back-to-list">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Zurück zur Liste
+      </a>
+
+      <header data-od-id="detail-header">
+        <div class="detail-title" data-od-id="detail-title">Anna Bergmann</div>
+        <p class="detail-subtitle">Bergmann GmbH</p>
+      </header>
+
+      <section class="card" style="margin-top:24px;" data-od-id="customer-meta">
+        <div class="meta-grid">
+          <div class="meta-item" data-od-id="meta-id">
+            <div class="meta-label">Kunden-ID</div>
+            <div class="meta-value mono">K-1001</div>
+          </div>
+          <div class="meta-item" data-od-id="meta-status">
+            <div class="meta-label">Status</div>
+            <div class="meta-value"><span class="badge badge-success">Aktiv</span></div>
+          </div>
+          <div class="meta-item" data-od-id="meta-email">
+            <div class="meta-label">E-Mail</div>
+            <div class="meta-value mono">anna.bergmann@bergmann-gmbh.de</div>
+          </div>
+          <div class="meta-item" data-od-id="meta-phone">
+            <div class="meta-label">Telefon</div>
+            <div class="meta-value">+49 89 1234 5678</div>
+          </div>
+          <div class="meta-item" data-od-id="meta-address">
+            <div class="meta-label">Adresse</div>
+            <div class="meta-value">Musterstraße 12, 80331 München</div>
+          </div>
+          <div class="meta-item" data-od-id="meta-since">
+            <div class="meta-label">Kunde seit</div>
+            <div class="meta-value">14.03.2022</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" data-od-id="customer-kpis">
+        <h2 class="section-title">Kennzahlen</h2>
+        <div class="kpi-grid" style="margin-top:16px;">
+          <article class="card kpi" data-od-id="kpi-total-revenue">
+            <div class="kpi-label">Gesamtumsatz</div>
+            <div class="kpi-value">48.320,50&nbsp;EUR</div>
+          </article>
+          <article class="card kpi" data-od-id="kpi-order-count">
+            <div class="kpi-label">Aufträge</div>
+            <div class="kpi-value">12</div>
+          </article>
+          <article class="card kpi" data-od-id="kpi-avg-value">
+            <div class="kpi-label">Ø Auftragswert</div>
+            <div class="kpi-value">4.026,71&nbsp;EUR</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" data-od-id="order-history">
+        <h2 class="section-title">Auftragshistorie</h2>
+        <div class="list" style="margin-top:16px;" data-od-id="order-history-list">
+          <div class="table-head cols-orders">
+            <div>Auftrag</div><div>Kunde</div><div>Datum</div>
+            <div class="cell-num">Betrag</div><div>Status</div><div></div>
+          </div>
+          <a href="order-detail.html" class="list-row cols-orders" data-od-id="history-order-1073">
+            <div class="cell cell-mono cell-strong" data-label="Auftrag">#1073</div>
+            <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+            <div class="cell" data-label="Datum">30.09.2026</div>
+            <div class="cell cell-num" data-label="Betrag">2.340,00&nbsp;EUR</div>
+            <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+            <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+          </a>
+          <a href="order-detail.html" class="list-row cols-orders" data-od-id="history-order-1054">
+            <div class="cell cell-mono cell-strong" data-label="Auftrag">#1054</div>
+            <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+            <div class="cell" data-label="Datum">16.09.2026</div>
+            <div class="cell cell-num" data-label="Betrag">3.720,00&nbsp;EUR</div>
+            <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+            <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+          </a>
+          <a href="order-detail.html" class="list-row cols-orders" data-od-id="history-order-1043">
+            <div class="cell cell-mono cell-strong" data-label="Auftrag">#1043</div>
+            <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+            <div class="cell" data-label="Datum">05.09.2026</div>
+            <div class="cell cell-num" data-label="Betrag">3.360,00&nbsp;EUR</div>
+            <div class="cell cell--status" data-label="Status"><span class="badge badge-danger">Überfällig</span></div>
+            <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+          </a>
+          <a href="order-detail.html" class="list-row cols-orders" data-od-id="history-order-1042">
+            <div class="cell cell-mono cell-strong" data-label="Auftrag">#1042</div>
+            <div class="cell row-name" data-label="Kunde">Anna Bergmann</div>
+            <div class="cell" data-label="Datum">04.09.2026</div>
+            <div class="cell cell-num" data-label="Betrag">2.380,00&nbsp;EUR</div>
+            <div class="cell cell--status" data-label="Status"><span class="badge badge-success">Bezahlt</span></div>
+            <div class="cell cell-chevron" data-label=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.nav');
+      var navItems = Array.prototype.slice.call(nav.querySelectorAll('.nav-item'));
+      navItems.forEach(function (el, i) { el.tabIndex = i === 0 ? 0 : -1; });
+      nav.addEventListener('keydown', function (e) {
+        var idx = navItems.indexOf(document.activeElement);
+        if (idx === -1) return;
+        var next = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = navItems[(idx + 1) % navItems.length];
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = navItems[(idx - 1 + navItems.length) % navItems.length];
+        else return;
+        e.preventDefault();
+        navItems.forEach(function (el) { el.tabIndex = -1; });
+        next.tabIndex = 0; next.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
