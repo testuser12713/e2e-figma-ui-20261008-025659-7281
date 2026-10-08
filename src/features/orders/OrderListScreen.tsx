@@ -20,7 +20,6 @@ import styles from './OrderListScreen.module.css';
 const STATUS_ORDER: OrderStatus[] = [
   'open',
   'paid',
-  'shipped',
   'overdue',
   'cancelled',
 ];

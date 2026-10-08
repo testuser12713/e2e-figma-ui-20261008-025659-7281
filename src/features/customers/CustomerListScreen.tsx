@@ -18,7 +18,7 @@ import {
 } from './filterCustomers';
 import styles from './CustomerListScreen.module.css';
 
-const CUSTOMER_STATUSES: CustomerStatus[] = ['active', 'pending', 'inactive'];
+const CUSTOMER_STATUSES: CustomerStatus[] = ['active', 'pending', 'at_risk', 'inactive'];
 
 const SORT_COLUMNS: { column: CustomerSortColumn; label: string }[] = [
   { column: 'name', label: 'Kunde' },

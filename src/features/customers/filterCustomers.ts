@@ -5,13 +5,13 @@ export type CustomerSortColumn = 'name' | 'company' | 'email' | 'city' | 'status
 export type SortDirection = 'asc' | 'desc';
 
 /**
- * German display labels for the customer status enum. The data contract
- * (src/types/models.ts) defines active | pending | inactive, so the labels are
- * derived directly from those values rather than from the mockup's taxonomy.
+ * German display labels for the customer status enum, aligned with DESIGN.md:
+ * active = Aktiv, pending = Neu, at_risk = Gefährdet, inactive = Inaktiv.
  */
 export const CUSTOMER_STATUS_LABELS: Record<CustomerStatus, string> = {
   active: 'Aktiv',
-  pending: 'Ausstehend',
+  pending: 'Neu',
+  at_risk: 'Gefährdet',
   inactive: 'Inaktiv',
 };
 

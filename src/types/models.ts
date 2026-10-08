@@ -1,4 +1,4 @@
-export type CustomerStatus = 'active' | 'inactive' | 'pending';
+export type CustomerStatus = 'active' | 'inactive' | 'pending' | 'at_risk';
 
 export interface Customer {
   id: string;
@@ -12,7 +12,7 @@ export interface Customer {
   totalRevenue: number;
 }
 
-export type OrderStatus = 'open' | 'paid' | 'shipped' | 'overdue' | 'cancelled';
+export type OrderStatus = 'open' | 'paid' | 'overdue' | 'cancelled';
 
 export interface OrderLine {
   description: string;

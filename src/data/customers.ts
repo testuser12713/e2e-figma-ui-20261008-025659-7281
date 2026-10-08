@@ -265,5 +265,38 @@ export const customers: Customer[] = [
     "status": "inactive",
     "createdAt": "2024-01-04",
     "totalRevenue": 45642.18
+  },
+  {
+    "id": "C-025",
+    "name": "Yvonne Hartmann",
+    "company": "Nordstern Consulting",
+    "email": "yvonne.hartmann@nordsternconsulting.de",
+    "phone": "+49 411 2864035",
+    "city": "Oldenburg",
+    "status": "at_risk",
+    "createdAt": "2023-05-19",
+    "totalRevenue": 73418.92
+  },
+  {
+    "id": "C-026",
+    "name": "Zacharias Vogel",
+    "company": "Eichenhof Systeme",
+    "email": "zacharias.vogel@eichenhofsysteme.de",
+    "phone": "+49 721 4091483",
+    "city": "Heidelberg",
+    "status": "at_risk",
+    "createdAt": "2022-11-30",
+    "totalRevenue": 61980.44
+  },
+  {
+    "id": "C-027",
+    "name": "Beate Thalmann",
+    "company": "Weserlicht Medien",
+    "email": "beate.thalmann@weserlichtmedien.de",
+    "phone": "+49 511 6729048",
+    "city": "Potsdam",
+    "status": "at_risk",
+    "createdAt": "2024-09-12",
+    "totalRevenue": 98275.13
   }
 ];

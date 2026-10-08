@@ -39,6 +39,10 @@ describe('filterCustomers', () => {
     const inactive = filterCustomers(customers, '', 'inactive');
     expect(inactive.length).toBeGreaterThan(0);
     expect(inactive.every((c) => c.status === 'inactive')).toBe(true);
+
+    const atRisk = filterCustomers(customers, '', 'at_risk');
+    expect(atRisk.length).toBeGreaterThan(0);
+    expect(atRisk.every((c) => c.status === 'at_risk')).toBe(true);
   });
 
   it('combines the search with the status filter', () => {

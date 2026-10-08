@@ -9,7 +9,6 @@ import styles from './OrderDetailScreen.module.css';
 const statusLabels: Record<OrderStatus, string> = {
   open: 'Offen',
   paid: 'Bezahlt',
-  shipped: 'Versandt',
   overdue: 'Überfällig',
   cancelled: 'Storniert',
 };
@@ -17,7 +16,6 @@ const statusLabels: Record<OrderStatus, string> = {
 const statusTone: Record<OrderStatus, string> = {
   open: 'badgeOpen',
   paid: 'badgePaid',
-  shipped: 'badgeShipped',
   overdue: 'badgeOverdue',
   cancelled: 'badgeCancelled',
 };
