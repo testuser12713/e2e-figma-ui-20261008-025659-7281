@@ -68,6 +68,38 @@
   line-height: 1.1;
 }
 
+.kpiDelta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-0);
+  margin-top: var(--space-0);
+  font-size: var(--size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.kpiDeltaArrow {
+  font-size: var(--size-xs);
+  line-height: 1;
+}
+
+.kpiDeltaUp {
+  color: var(--color-success);
+}
+
+.kpiDeltaDown {
+  color: var(--color-danger);
+}
+
+.kpiDeltaFlat {
+  color: var(--color-fg_muted);
+}
+
+.kpiNote {
+  margin-top: var(--space-0);
+  font-size: var(--size-xs);
+  color: var(--color-fg_subtle);
+}
+
 .chartWrap {
   height: 280px;
 }

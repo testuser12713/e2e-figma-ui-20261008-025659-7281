@@ -3,13 +3,18 @@ import type { ActivityEntry, Order } from '../../types/models';
 import {
   REFERENCE_MONTH,
   averageOrderValue,
+  averageOrderValueDelta,
   countOpenOrders,
   currentMonthRevenue,
+  formatPercentDE,
   latestMonth,
   monthKey,
   monthLabelDe,
   monthlyRevenueSeries,
+  newCustomersDelta,
   newCustomersThisMonth,
+  openOrdersDelta,
+  revenueDelta,
 } from './dashboardMetrics';
 
 function makeOrder(partial: Partial<Order>): Order {
@@ -144,5 +149,152 @@ describe('averageOrderValue', () => {
 
   it('produces a positive average for the mock data', () => {
     expect(averageOrderValue()).toBeGreaterThan(0);
+  });
+});
+
+describe('formatPercentDE', () => {
+  it('formats a positive change with an explicit plus and a non-breaking space', () => {
+    expect(formatPercentDE(12.4)).toBe('+12,4\u00A0%');
+  });
+
+  it('formats a decline with an explicit minus', () => {
+    expect(formatPercentDE(-3.1)).toBe('-3,1\u00A0%');
+  });
+
+  it('rounds to one decimal place', () => {
+    expect(formatPercentDE(8.06)).toBe('+8,1\u00A0%');
+  });
+
+  it('formats zero with an explicit plus', () => {
+    expect(formatPercentDE(0)).toBe('+0,0\u00A0%');
+  });
+});
+
+describe('revenueDelta', () => {
+  it('reports an increase against the previous month', () => {
+    const list = [
+      makeOrder({ date: '2026-02-05', total: 150 }),
+      makeOrder({ date: '2026-01-05', total: 100 }),
+    ];
+
+    const delta = revenueDelta(list, '2026-02');
+
+    expect(delta.direction).toBe('up');
+    expect(delta.percent).toBeCloseTo(50, 1);
+    expect(delta.text).toBe('+50,0\u00A0%');
+  });
+
+  it('reports a decline against the previous month', () => {
+    const list = [
+      makeOrder({ date: '2026-02-05', total: 80 }),
+      makeOrder({ date: '2026-01-05', total: 100 }),
+    ];
+
+    const delta = revenueDelta(list, '2026-02');
+
+    expect(delta.direction).toBe('down');
+    expect(delta.text).toBe('-20,0\u00A0%');
+  });
+
+  it('falls back to the most recent month with data when the previous month is empty', () => {
+    const list = [
+      makeOrder({ date: '2026-02-05', total: 200 }),
+      makeOrder({ date: '2025-12-05', total: 100 }),
+    ];
+
+    const delta = revenueDelta(list, '2026-02');
+
+    expect(delta.direction).toBe('up');
+    expect(delta.percent).toBeCloseTo(100, 1);
+  });
+
+  it('produces a valid delta for the mock data', () => {
+    const delta = revenueDelta();
+
+    expect(['up', 'down', 'flat']).toContain(delta.direction);
+    expect(delta.text).toMatch(/^\+\d+,\d\u00A0%$|^-\d+,\d\u00A0%$/);
+  });
+});
+
+describe('openOrdersDelta', () => {
+  it('reports a decline when this month has no open orders', () => {
+    const list = [
+      makeOrder({ date: '2026-02-05', status: 'paid' }),
+      makeOrder({ date: '2026-01-05', status: 'open' }),
+    ];
+
+    const delta = openOrdersDelta(list, '2026-02');
+
+    expect(delta.direction).toBe('down');
+    expect(delta.text).toBe('-100,0\u00A0%');
+  });
+
+  it('reports a flat delta when the counts match', () => {
+    const list = [
+      makeOrder({ date: '2026-02-05', status: 'open' }),
+      makeOrder({ date: '2026-02-20', status: 'open' }),
+      makeOrder({ date: '2026-01-05', status: 'open' }),
+      makeOrder({ date: '2026-01-20', status: 'open' }),
+    ];
+
+    const delta = openOrdersDelta(list, '2026-02');
+
+    expect(delta.direction).toBe('flat');
+    expect(delta.text).toBe('+0,0\u00A0%');
+  });
+
+  it('produces a valid delta for the mock data', () => {
+    const delta = openOrdersDelta();
+
+    expect(['up', 'down', 'flat']).toContain(delta.direction);
+    expect(delta.text).toMatch(/%$/);
+  });
+});
+
+describe('newCustomersDelta', () => {
+  it('reports no change when the same number of customers joined', () => {
+    const entries = [
+      makeActivity({ kind: 'customer', date: '2026-02-10' }),
+      makeActivity({ kind: 'customer', date: '2026-01-10' }),
+    ];
+
+    const delta = newCustomersDelta(entries, '2026-02');
+
+    expect(delta.direction).toBe('flat');
+    expect(delta.text).toBe('+0,0\u00A0%');
+  });
+
+  it('reports an increase when more customers joined', () => {
+    const entries = [
+      makeActivity({ kind: 'customer', date: '2026-02-10' }),
+      makeActivity({ kind: 'customer', date: '2026-02-20' }),
+      makeActivity({ kind: 'customer', date: '2026-01-10' }),
+    ];
+
+    const delta = newCustomersDelta(entries, '2026-02');
+
+    expect(delta.direction).toBe('up');
+    expect(delta.text).toBe('+100,0\u00A0%');
+  });
+});
+
+describe('averageOrderValueDelta', () => {
+  it('compares the monthly average order value with the previous month', () => {
+    const list = [
+      makeOrder({ date: '2026-02-05', total: 200 }),
+      makeOrder({ date: '2026-01-05', total: 100 }),
+    ];
+
+    const delta = averageOrderValueDelta(list, '2026-02');
+
+    expect(delta.direction).toBe('up');
+    expect(delta.text).toBe('+100,0\u00A0%');
+  });
+
+  it('produces a valid delta for the mock data', () => {
+    const delta = averageOrderValueDelta();
+
+    expect(['up', 'down', 'flat']).toContain(delta.direction);
+    expect(delta.text).toMatch(/\u00A0%$/);
   });
 });
