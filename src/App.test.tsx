@@ -16,14 +16,14 @@ describe('App shell', () => {
     renderAt('/');
     const nav = screen.getByRole('navigation', { name: 'Hauptnavigation' });
     expect(within(nav).getByRole('link', { name: 'Dashboard' })).toBeInTheDocument();
-    expect(within(nav).getByRole('link', { name: 'Customers' })).toBeInTheDocument();
-    expect(within(nav).getByRole('link', { name: 'Orders' })).toBeInTheDocument();
+    expect(within(nav).getByRole('link', { name: 'Kunden' })).toBeInTheDocument();
+    expect(within(nav).getByRole('link', { name: 'Aufträge' })).toBeInTheDocument();
   });
 
   it('marks the current navigation entry with aria-current', () => {
     renderAt('/customers');
     const nav = screen.getByRole('navigation', { name: 'Hauptnavigation' });
-    expect(within(nav).getByRole('link', { name: 'Customers' })).toHaveAttribute(
+    expect(within(nav).getByRole('link', { name: 'Kunden' })).toHaveAttribute(
       'aria-current',
       'page',
     );
